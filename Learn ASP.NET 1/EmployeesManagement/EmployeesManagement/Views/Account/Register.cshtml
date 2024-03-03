@@ -1,0 +1,55 @@
+﻿@model EmployeesManagement.Models.RegisterViewModel
+
+@{
+	ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+<form asp-action="Register" method="post">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="form-group">
+		<label asp-for="Email" class="control-label"></label>
+		<input asp-for="Email" class="form-control" />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Password" class="control-label"></label>
+		<input asp-for="Password" class="form-control" />
+		<span asp-validation-for="Password" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="ConfirmPassword" class="control-label"></label>
+		<input asp-for="ConfirmPassword" class="form-control" />
+		<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+	</div>
+	<p>Do you have an account? <a class="text-primary" asp-action="Login" type="submit">Click Login</a> </p>
+	<div class="form-group">
+		<input type="submit" value="Register" id="showRegister" class="btn btn-primary" />
+	</div>
+</form>
+
+@if (TempData["SweetAlertRegister"] != null)
+{
+	@section Scripts {
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const registerButton = document.getElementById('showRegister');
+
+			if (registerButton) {
+				registerButton.addEventListener('click', function () {
+					Swal.fire({
+						position: "center",
+						icon: '@TempData["SweetAlertRegister"]',
+							title: '@TempData["SweetAlertRegister"]' === 'success' ? "Success!" : "Error!",
+							text: '@TempData["SweetAlertRegister"]' === 'success' ? "Login successful." : "Invalid email or password.",
+							showConfirmButton: false,
+							timer: 3000
+						});
+					});
+				}
+			});
+		</script>
+	}
+}
+@* <partial name="_LoginPartial" /> *@

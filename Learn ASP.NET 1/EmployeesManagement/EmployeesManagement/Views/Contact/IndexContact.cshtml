@@ -1,0 +1,119 @@
+﻿@using EmployeesManagement.Models
+@model Contact
+
+@{
+	ViewData["Title"] = "Contact Me";
+}
+
+<section class="justify-content-center">
+	<div class="container">
+		<div class="row justify-content-center pt-5">
+			<div class="col-md-6 text-center mb-5">
+				<h2 class="heading-section">Form Contact</h2>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="wrapper">
+					<div class="row no-gutters mb-5">
+							<div class="col-md-5">
+								<div class="contact-wrap w-100 p-md-5 p-4">
+									<h3 class="mb-4">Contact Us</h3>
+								@using (Html.BeginForm("IndexContact", "Contact", FormMethod.Post))
+								{
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label asp-for="FullName" class="control-label">FullName</label>
+												<input asp-for="FullName" type="text" class="form-control" name="name" id="name" placeholder="Name">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label asp-for="EmailAddress" class="control-label">Email Address</label>
+												<input asp-for="EmailAddress" type="email" class="form-control" name="email" id="email" placeholder="Email">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label asp-for="MessageSubject" class="control-label">Subject</label>
+												<input asp-for="MessageSubject" type="text" class="form-control" name="Subject" id="subject" placeholder="Subject">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label asp-for="SendMessages" class="control-label">Message</label>
+												<textarea asp-for="SendMessages" name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<input id="submit" type="submit" value="Submit" class="btn btn-primary" />
+											</div>
+										</div>
+									</div>
+								}
+								</div>
+							</div>
+							<div class="col-md-5 d-flex align-items-stretch">
+								<div id="map">
+									<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.5692956388193!2d107.11557080803513!3d-6.3201649618140365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699bae9cfe6b6f%3A0x1df9c022cf478c61!2sKalbe%20Farma%20PT%20Tbk!5e0!3m2!1sid!2sid!4v1706891644315!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+								</div>
+							</div>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="dbox w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-map-marker"></span>
+										</div>
+										<div class="text">
+											<p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="dbox w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-phone"></span>
+										</div>
+										<div class="text">
+											<p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="dbox w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-paper-plane"></span>
+										</div>
+										<div class="text">
+											<p><span>Email:</span> <a href="/cdn-cgi/l/email-protection#deb7b0b8b19ea7b1abacadb7aabbf0bdb1b3"><span class="__cf_email__" data-cfemail="127b7c747d526b7d6760617b66773c717d7f">[email&#160;protected]</span></a></p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="dbox w-100 text-center">
+										<div class="icon d-flex align-items-center justify-content-center">
+											<span class="fa fa-globe"></span>
+										</div>
+										<div class="text">
+											<p><span>Website</span> <a href="#">yoursite.com</a></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+@if (@TempData["msg"] != null)
+	{
+		 	<script>
+				alert('@TempData["msg"]')
+		 	</script>
+	}

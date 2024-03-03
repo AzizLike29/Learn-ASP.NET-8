@@ -1,0 +1,61 @@
+﻿@model CrudGopi.Models.EmployeeViewModel
+
+@{
+	ViewData["Title"] = "Delete Employee Data";
+	var errorMessage = TempData["errorMessage"]?.ToString();
+}
+
+<h3>@ViewData["Title"]</h3>
+</hr>
+
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+	<div class="alert alert-danger">
+		<strong>Error!</strong>@errorMessage
+		<button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="close"></button>
+	</div>
+}
+
+<form action="Delete" method="POST" autocomplete="off">
+	<div class="mb-3">
+		<label class="form-label">Id</label>
+		<input type="text" class="form-control" asp-for="Id" readonly />
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label">FirstName</label>
+		<input type="text" class="form-control" asp-for="FirstName" readonly />
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label">LastName</label>
+		<input type="text" class="form-control" asp-for="LastName" readonly />
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label">DateOfBirth</label>
+		<input type="date" class="form-control" asp-for="DateOfBirth" readonly />
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label">Email</label>
+		<input type="email" class="form-control" asp-for="Email" readonly />
+	</div>
+
+	<div class="mb-3">
+		<label class=form-label>Salary</label>
+		<div class="input-group">
+			<span class="input-group-text">$</span>
+			<input type="text" class="form-control" asp-for="Salary" readonly />
+		</div>
+	</div>
+	<div class="d-grid">
+		<button type="submit" class="btn btn-danger" onclick="return confirm ('Are you sure delete data to employee? : @Model.FullName')">Delete</button>
+	</div>
+</form>
+
+@section scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

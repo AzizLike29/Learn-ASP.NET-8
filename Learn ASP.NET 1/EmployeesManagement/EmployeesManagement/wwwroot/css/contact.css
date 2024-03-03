@@ -1,0 +1,9 @@
+﻿html, body {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+h2.heading-section {
+    font-weight: 600;
+    z-index: 1;
+}

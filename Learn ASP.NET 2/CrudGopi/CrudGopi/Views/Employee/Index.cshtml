@@ -1,0 +1,80 @@
+﻿@model List<CrudGopi.Models.EmployeeViewModel>
+
+@{
+	ViewData["Title"] = "Index Employee";
+	var successMeessage = TempData["successMessage"]?.ToString();
+	var errorMessage = TempData["errorMessage"]?.ToString();
+}
+
+<hr />
+@if (!string.IsNullOrWhiteSpace(@successMeessage))
+{
+	<div class="alert alert-success">
+		<strong>Success!</strong>@successMeessage
+		<button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="close"></button>
+	</div>
+}
+else if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+	<div class="alert alert-danger">
+		<strong>Error!</strong>@errorMessage
+		<button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="close"></button>
+	</div>
+}
+
+<form>
+	<button asp-action="Create" asp-controller="Employee" class="btn btn-primary mb-3">Create Employee</button>
+	<table class="table table-responsive table-hover table-bordered">
+		<thead>
+			<tr class="table-active">
+				<th class="text-center">Id</th>
+				<th class="text-center">Name</th>
+				<th class="text-center">Date Of Birth</th>
+				<th class="text-center">Email</th>
+				<th class="text-center">Salary</th>
+				<th class="text-center">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@if (Model != null && Model.Any())
+			{
+				@foreach (var employee in Model)
+				{
+					<tr>
+						<td class="text-center">
+							@employee.Id
+						</td>
+						<td class="text-center">
+							@employee.FullName
+						</td>
+						<td class="text-center">
+							@employee.DateOfBirth.ToString("dd/MM/yyyy")
+						</td>
+						<td class="text-center">
+							@employee.Email
+						</td>
+						<td class="text-end">
+							@employee.Salary
+						</td>
+						<td class="text-center">
+							<div class="btn-group btn-group-sm justify-content-center">
+								<a asp-controller="Employee" asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-primary">Edit</a>
+								<a asp-controller="Employee" asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-danger">Delete</a>
+							</div>
+						</td>
+					</tr>
+				}
+			}
+			else
+			{
+				<tr>
+					<td colspan="6">
+						<div>
+							No Employees available at this moment
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</form>
